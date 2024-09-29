@@ -1,1 +1,3 @@
-# Gamepop. A fake gamestore, inspired by theodinproject
+# Gamepop. A fake gamestore
+
+inspired by theodinproject
