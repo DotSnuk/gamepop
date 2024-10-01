@@ -1,0 +1,4 @@
+.test {
+  composes: primaryBackground from '../../app/colors.module.css';
+  composes: primaryText from '../../app/colors.module.css';
+}
