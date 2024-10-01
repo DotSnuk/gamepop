@@ -8,6 +8,7 @@ export const routes = [
     children: [
       {
         index: true,
+        path: 'home',
         element: <Home />,
       },
     ],

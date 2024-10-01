@@ -1,10 +1,11 @@
-.test {
-  composes: primaryBackground from '../../assets/colors.module.css';
-  composes: primaryText from '../../assets/colors.module.css';
-}
-
 .links ul {
   list-style-type: none;
   display: flex;
+  gap: 10px;
   flex-direction: row;
+}
+
+.links a {
+  color: inherit;
+  text-decoration: none;
 }
