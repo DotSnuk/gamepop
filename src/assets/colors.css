@@ -1,0 +1,22 @@
+/* .primaryBackground {
+  background-color: #222831;
+}
+
+.secondaryBackground {
+  background-color: #31363f;
+}
+
+.borderColor {
+  border-color: #76abae;
+}
+
+.primaryText {
+  color: #eeeeee;
+} */
+
+:root {
+  --color-primary: #222831;
+  --color-secondary: #31363f;
+  --color-border: #76abae;
+  --color-text: #eeeeee;
+}

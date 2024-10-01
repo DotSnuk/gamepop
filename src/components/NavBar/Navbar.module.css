@@ -1,4 +1,10 @@
 .test {
-  composes: primaryBackground from '../../app/colors.module.css';
-  composes: primaryText from '../../app/colors.module.css';
+  composes: primaryBackground from '../../assets/colors.module.css';
+  composes: primaryText from '../../assets/colors.module.css';
+}
+
+.links ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
 }
