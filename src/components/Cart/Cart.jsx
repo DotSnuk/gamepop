@@ -1,3 +1,9 @@
+import { ShoppingCart } from 'lucide-react';
+
 export default function Cart() {
-  return <nav>cart</nav>;
+  return (
+    <nav>
+      <ShoppingCart />
+    </nav>
+  );
 }
