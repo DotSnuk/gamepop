@@ -31,6 +31,6 @@ it('clicking on home brings you to home', async () => {
   await user.click(screen.getByRole('link', { name: /home/i }));
 
   expect(
-    screen.getByRole('heading', { level: 1, name: /games/i }),
+    screen.getByRole('heading', { level: 1, name: /popular/i }),
   ).toBeInTheDocument();
 });
