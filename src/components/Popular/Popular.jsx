@@ -11,13 +11,15 @@ export default function Popular() {
     handleGames();
   }, []);
   console.log(games);
-  if (games.length === 0) return <h1>loading...</h1>;
+  // if (games.length === 0) return <h1>loading...</h1>;
   return (
     <>
       <h1>Popular games</h1>
-      {games.map(game => (
-        <h1 key={game.id}>{game.name}</h1>
-      ))}
+      {games.length === 0 ? (
+        <h1>loading...</h1>
+      ) : (
+        games.map(game => <h1 key={game.id}>{game.name}</h1>)
+      )}
     </>
   );
 }
