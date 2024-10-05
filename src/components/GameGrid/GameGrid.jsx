@@ -1,10 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { routes } from '../../app/routes';
-import userEvent from '@testing-library/user-event';
+import GridItem from '../GridItem/GridItem';
 
-it('test', () => {
-  //
-  expect();
-});
+export default function GameGrid({ games }) {
+  return games.map(game => <GridItem game={game} key={game.id} />);
+}
