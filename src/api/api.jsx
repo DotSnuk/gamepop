@@ -19,12 +19,15 @@ export async function getPopularGames() {
   );
   const todayFormatted = formatDate(today);
   const oneYearAgoFormatted = formatDate(oneYearAgo);
-  console.log(todayFormatted);
-  console.log(oneYearAgoFormatted);
-  const searchTerm = `dates=${oneYearAgoFormatted},${todayFormatted}`;
-  const games = await fetch(`${URL}games?key=${API_KEY}&${searchTerm}`, {
-    mode: 'cors',
-  }).then(response => {
+  const searchDate = `dates=${oneYearAgoFormatted},${todayFormatted}`;
+  const searchRating = `ordering=-rating`;
+  const searchSize = `page_size=10`;
+  const games = await fetch(
+    `${URL}games?key=${API_KEY}&${searchDate}&${searchRating}&${searchSize}`,
+    {
+      mode: 'cors',
+    },
+  ).then(response => {
     if (response.status >= 400) throw new Error('server error');
     return response.json();
   });
