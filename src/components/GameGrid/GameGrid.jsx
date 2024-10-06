@@ -1,5 +1,17 @@
 import GridItem from '../GridItem/GridItem';
+import PropTypes from 'prop-types';
+import styles from './GameGrid.module.css';
 
 export default function GameGrid({ games }) {
-  return games.map(game => <GridItem game={game} key={game.id} />);
+  return (
+    <div className={styles.container}>
+      {games.map(game => (
+        <GridItem game={game} key={game.id} />
+      ))}
+    </div>
+  );
 }
+
+GameGrid.propTypes = {
+  games: PropTypes.array,
+};

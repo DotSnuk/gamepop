@@ -28,9 +28,8 @@ export async function getPopularGames() {
       mode: 'cors',
     },
   ).then(response => {
-    if (response.status >= 400) throw new Error('server error');
+    if (!response.ok) throw new Error('server error');
     return response.json();
   });
-  console.log(games);
   return games.results;
 }

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import styles from './GridItem.module.css';
 
 export default function GridItem({ game }) {
   return (
-    <div className='container'>
-      <img src={game.background_image} />
-      <h2 className='name'>{game.name}</h2>
+    <div className={styles.container}>
+      <img className={styles.background} src={game.background_image} />
+      <h2 className={styles.name}>{game.name}</h2>
     </div>
   );
 }
