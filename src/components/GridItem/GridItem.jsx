@@ -4,8 +4,12 @@ import styles from './GridItem.module.css';
 export default function GridItem({ game }) {
   return (
     <div className={styles.container}>
-      <img className={styles.background} src={game.background_image} />
       <h2 className={styles.name}>{game.name}</h2>
+      <img className={styles.background} src={game.background_image} />
+      <div className={styles.priceContainer}>
+        <div className={styles.price}>{game.price}$</div>
+        <div className={styles.addToCart}></div>
+      </div>
     </div>
   );
 }
