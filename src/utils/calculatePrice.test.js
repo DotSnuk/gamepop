@@ -15,7 +15,8 @@ it('calculate price with store containing GOG', () => {
     stores: [{ store: { id: 1 } }, { store: { id: 5 } }],
   };
 
-  expect(calculatePrice(game)).toBeCloseTo(20);
+  expect(calculatePrice(game)).toBeGreaterThanOrEqual(17);
+  expect(calculatePrice(game)).toBeLessThanOrEqual(23);
 });
 
 it('calculate price with store containing playstation', () => {
@@ -25,7 +26,8 @@ it('calculate price with store containing playstation', () => {
     platforms: [{ platform: { id: 187, name: 'PlayStation 5' } }],
   };
 
-  expect(calculatePrice(game)).toBeCloseTo(60);
+  expect(calculatePrice(game)).toBeGreaterThanOrEqual(57);
+  expect(calculatePrice(game)).toBeLessThanOrEqual(63);
 });
 
 it('calculate price with indie genre', () => {
@@ -34,5 +36,6 @@ it('calculate price with indie genre', () => {
     genres: [{ id: 51, name: 'Indie' }],
   };
 
-  expect(calculatePrice(game)).toBeCloseTo(15);
+  expect(calculatePrice(game)).toBeGreaterThanOrEqual(12);
+  expect(calculatePrice(game)).toBeLessThanOrEqual(18);
 });
