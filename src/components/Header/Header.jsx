@@ -1,6 +1,6 @@
 import Navbar from '../NavBar/Navbar';
 import Title from '../Title/Title';
-import Cart from '../Cart/Cart';
+import CartLink from '../CartLink/CartLink';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -8,7 +8,7 @@ export default function Header() {
     <header className={styles.container}>
       <Navbar />
       <Title />
-      <Cart />
+      <CartLink />
     </header>
   );
 }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './GridItem.module.css';
+import { Plus } from 'lucide-react';
 
 export default function GridItem({ game }) {
   return (
@@ -8,7 +9,9 @@ export default function GridItem({ game }) {
       <img className={styles.background} src={game.background_image} />
       <div className={styles.priceContainer}>
         <div className={styles.price}>{game.price}$</div>
-        <div className={styles.addToCart}></div>
+        <div className={styles.addToCart}>
+          <Plus />
+        </div>
       </div>
     </div>
   );

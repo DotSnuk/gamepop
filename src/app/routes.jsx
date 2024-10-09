@@ -7,8 +7,11 @@ export const routes = [
     element: <App />,
     children: [
       {
-        index: true,
         path: 'home',
+        element: <Home />,
+      },
+      {
+        index: true,
         element: <Home />,
       },
     ],

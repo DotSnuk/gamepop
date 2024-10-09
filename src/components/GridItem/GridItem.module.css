@@ -21,6 +21,8 @@
 
 .priceContainer {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   box-sizing: border-box;
   position: absolute;
   align-items: center;
@@ -30,4 +32,9 @@
   height: 30px;
   background-color: var(--color-secondary);
   opacity: 0.7;
+}
+
+.addToCart {
+  display: flex;
+  justify-content: center;
 }

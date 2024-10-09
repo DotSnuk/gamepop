@@ -33,3 +33,5 @@ export async function getPopularGames() {
   });
   return games.results;
 }
+
+// function to get searchString?
