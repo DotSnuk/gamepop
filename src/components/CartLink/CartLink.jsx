@@ -1,12 +1,18 @@
 import { ShoppingCart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function CartLink() {
+export default function CartLink({ openCart, cart }) {
   return (
     <nav>
-      <Link aria-label='cart'>
+      <button aria-label='cart' onClick={() => openCart()}>
         <ShoppingCart />
-      </Link>
+        {cart.length}
+      </button>
     </nav>
   );
 }
+
+CartLink.propTypes = {
+  openCart: PropTypes.func,
+  cart: PropTypes.array,
+};
