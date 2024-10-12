@@ -19,7 +19,7 @@ export default function App() {
           <CartModal cart={cart} />
           <button onClick={closeCart}>close</button>
         </dialog>
-        <Outlet />
+        <Outlet context={[dispatch]} />
       </main>
     </>
   );
