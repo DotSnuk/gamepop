@@ -1,6 +1,6 @@
 @import '../../assets/colors.css';
 
-.container {
+a {
   display: flex;
   flex-direction: column;
   position: relative;
