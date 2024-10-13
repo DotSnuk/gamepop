@@ -8,10 +8,7 @@ export default function Popular({ dispatch }) {
   const [games, setGames] = useState([]);
   useEffect(() => {
     async function handleGames() {
-      const games = await getPopularGames().then(data =>
-        setGames(addPrices(data)),
-      );
-      return games;
+      await getPopularGames().then(data => setGames(addPrices(data)));
     }
     handleGames();
   }, []);

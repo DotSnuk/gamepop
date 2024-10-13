@@ -41,6 +41,7 @@ export async function getGameWithId(id) {
     if (!response.ok) throw new Error('server error');
     return response.json();
   });
+  console.log(game);
   return game;
 }
 

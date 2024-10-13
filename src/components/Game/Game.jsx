@@ -1,19 +1,45 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getGameWithId } from '../../api/api';
+import styles from './Game.module.css';
+import parse from 'html-react-parser';
 
 export default function Game() {
-  const {
-    id,
-    name,
-    description,
-    released,
-    background_image,
-    background_image_additional,
-  } = useParams();
+  console.log('test');
+  const [game, setGame] = useState(null);
+  const { id } = useParams();
+  useEffect(() => {
+    async function handleGetGame(id) {
+      await getGameWithId(id).then(data => setGame(data));
+    }
+    handleGetGame(id);
+  }, [id]);
+
   console.log(id);
 
+  if (!game)
+    return (
+      <div className={styles.container}>
+        <h2>loading...</h2>
+      </div>
+    );
   return (
-    <>
-      <h3>{id}</h3>
-    </>
+    <div className={styles.container}>
+      <section className={styles.content}>
+        <h2>{game.name}</h2>
+        <img src={game.background_image} />
+        <p>{parse(game.description)}</p>
+      </section>
+      <section className={styles.side}>
+        <ul>
+          <li>
+            Developed by:{' '}
+            {game.developers.map(dev => (
+              <p key={dev.id}>{dev.name}</p>
+            ))}
+          </li>
+        </ul>
+      </section>
+    </div>
   );
 }
