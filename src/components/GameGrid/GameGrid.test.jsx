@@ -1,15 +1,19 @@
-import { describe, it, expect, vi } from 'vitest';
+import { it, expect, vi, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { routes } from '../../app/routes';
 import userEvent from '@testing-library/user-event';
 import GameGrid from './GameGrid';
+import { MemoryRouter } from 'react-router-dom';
+
+afterEach(() => {
+  vi.clearAllMocks();
+  vi.resetAllMocks();
+});
 
 vi.mock('../GridItem/GridItem', () => ({
   default: props => {
     return (
       <div>
-        <a href='#'>{props.game.name}</a>
+        <h2>{props.game.name}</h2>
       </div>
     );
   },
@@ -21,7 +25,13 @@ it('Show 10 games', () => {
     games.push({ name: `GTA${i}`, id: i });
   }
 
-  render(<GameGrid games={games} />);
+  render(
+    <MemoryRouter>
+      <GameGrid games={games} />
+    </MemoryRouter>,
+  );
 
-  expect(screen.getAllByRole('link')[9]).toHaveTextContent(/gta9/i);
+  expect(screen.getAllByRole('heading', { level: 2 })[9]).toHaveTextContent(
+    /gta9/i,
+  );
 });

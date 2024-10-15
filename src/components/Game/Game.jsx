@@ -5,7 +5,6 @@ import styles from './Game.module.css';
 import parse from 'html-react-parser';
 
 export default function Game() {
-  console.log('test');
   const [game, setGame] = useState(null);
   const { id } = useParams();
   useEffect(() => {
@@ -14,8 +13,6 @@ export default function Game() {
     }
     handleGetGame(id);
   }, [id]);
-
-  console.log(id);
 
   if (!game)
     return (
