@@ -8,7 +8,7 @@ export default function Navbar() {
       <nav>
         <ul>
           <li>
-            <Link to='home'>Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
             <Link to='browse'>Browse</Link>

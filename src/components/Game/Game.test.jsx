@@ -7,7 +7,6 @@ import Game from './Game';
 import { useEffect, useState } from 'react';
 import * as api from '../../api/api';
 import { act } from '@testing-library/react';
-// import { getGameWithId } from '../../api/api';
 
 afterEach(() => {
   vi.clearAllMocks();
