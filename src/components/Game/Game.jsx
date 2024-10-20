@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 import { getGameWithId } from '../../api/api';
 import { useDispatchContext } from '../../app/App';
 import { ACTIONS } from '../../assets/constants';
+import PurchaseBar from './PurchaseBar/PurchaseBar';
 import styles from './Game.module.css';
 import parse from 'html-react-parser';
 
@@ -28,6 +29,7 @@ export default function Game() {
       <section className={styles.content}>
         <h2>{game.name}</h2>
         <img src={game.background_image} />
+        <PurchaseBar game={game} />
         <p>{parse(game.description)}</p>
       </section>
       <section className={styles.side}>
