@@ -21,7 +21,7 @@ export async function getPopularGames() {
   const oneYearAgoFormatted = formatDate(oneYearAgo);
   const searchDate = `dates=${oneYearAgoFormatted},${todayFormatted}`;
   const searchRating = `ordering=-rating`;
-  const searchSize = `page_size=10`;
+  const searchSize = `page_size=12`;
   const games = await fetch(
     `${URL}games?key=${API_KEY}&${searchDate}&${searchRating}&${searchSize}`,
     {
@@ -41,7 +41,7 @@ export async function getGameWithId(id) {
     if (!response.ok) throw new Error('server error');
     return response.json();
   });
-  console.log(game);
+
   return game;
 }
 

@@ -1,10 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 import { getPopularGames, getGameWithId } from './api';
 
-it('get 10 games', async () => {
+it('get 12 games', async () => {
   const games = await getPopularGames();
 
-  expect(games).toHaveLength(10);
+  expect(games).toHaveLength(12);
 });
 
 it('get grand theft auto v from search', async () => {

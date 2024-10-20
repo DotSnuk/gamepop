@@ -5,5 +5,21 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
-  width: 95vw;
+  width: 100%;
+  padding: 30px;
+}
+
+.gameWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 0 0 400px;
+}
+
+.gameWrapper a {
+  flex: 0 0 300px;
+}
+
+.info {
+  flex: 0 0 100px;
 }

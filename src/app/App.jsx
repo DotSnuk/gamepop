@@ -1,8 +1,10 @@
 import Header from '../components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { useState, useReducer, useRef } from 'react';
+import { useContext, createContext, useReducer, useRef } from 'react';
 import CartModal from '../components/CartModal/CartModal';
 import { ACTIONS } from '../assets/constants';
+
+export const DispatchContext = createContext(null);
 
 export default function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);
@@ -13,16 +15,22 @@ export default function App() {
 
   return (
     <>
-      <Header openCart={openCart} cart={cart} />
-      <main>
-        <dialog ref={dialogRef} onCancel={closeCart}>
-          <CartModal cart={cart} />
-          <button onClick={closeCart}>close</button>
-        </dialog>
-        <Outlet context={[dispatch]} />
-      </main>
+      <DispatchContext.Provider value={dispatch}>
+        <Header openCart={openCart} cart={cart} />
+        <main>
+          <dialog ref={dialogRef} onCancel={closeCart}>
+            <CartModal cart={cart} />
+            <button onClick={closeCart}>close</button>
+          </dialog>
+          <Outlet context={[dispatch]} />
+        </main>
+      </DispatchContext.Provider>
     </>
   );
+}
+
+export function useDispatchContext() {
+  return useContext(DispatchContext);
 }
 
 function addGame(game) {
