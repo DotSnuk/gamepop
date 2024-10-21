@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './GridItem.module.css';
 import GridInfo from '../GridInfo/GridInfo';
-import { Plus } from 'lucide-react';
 
 export default function GridItem({ game }) {
   return (

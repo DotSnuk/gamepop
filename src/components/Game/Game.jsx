@@ -1,8 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { getGameWithId } from '../../api/api';
-import { useDispatchContext } from '../../app/App';
-import { ACTIONS } from '../../assets/constants';
 import { addPrices } from '../../utils/addPrices';
 import PurchaseBar from './PurchaseBar/PurchaseBar';
 import styles from './Game.module.css';
@@ -11,7 +9,6 @@ import parse from 'html-react-parser';
 export default function Game() {
   const [game, setGame] = useState(null);
   const { id } = useParams();
-  const dispatch = useDispatchContext();
   useEffect(() => {
     async function handleGetGame(id) {
       await getGameWithId(id).then(data => setGame(addPrices(data)));
