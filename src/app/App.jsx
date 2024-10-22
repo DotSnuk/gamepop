@@ -39,6 +39,6 @@ function addGame(game) {
 
 function cartReducer(cart, action) {
   if (action.type === ACTIONS.ADDGAME) {
-    return [...cart, addGame(action.payload.game)];
+    return [...cart, addGame(action.payload)];
   }
 }
