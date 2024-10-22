@@ -3,12 +3,12 @@ import Title from '../Title/Title';
 import CartLink from '../CartLink/CartLink';
 import styles from './Header.module.css';
 
-export default function Header({ openCart, cart }) {
+export default function Header() {
   return (
     <header className={styles.container}>
       <Navbar />
       <Title />
-      <CartLink openCart={openCart} cart={cart} />
+      <CartLink />
     </header>
   );
 }

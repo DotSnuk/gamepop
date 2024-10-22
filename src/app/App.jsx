@@ -15,14 +15,14 @@ export default function App() {
 
   return (
     <>
-      <CartContext.Provider value={{ dispatch, cart }}>
-        <Header openCart={openCart} cart={cart} />
+      <CartContext.Provider value={{ dispatch, cart, openCart }}>
+        <Header />
         <main>
           <dialog ref={dialogRef} onCancel={closeCart}>
-            <CartModal cart={cart} />
+            <CartModal />
             <button onClick={closeCart}>close</button>
           </dialog>
-          <Outlet context={[cart]} />
+          <Outlet />
         </main>
       </CartContext.Provider>
     </>
