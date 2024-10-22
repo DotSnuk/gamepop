@@ -4,6 +4,7 @@ import { useCartContext } from '../../app/App';
 
 export default function CartLink() {
   const { cart, openCart } = useCartContext();
+  // cart.length needs to later also apply the amount of games per game
   return (
     <nav>
       <button aria-label='cart' onClick={() => openCart()}>
