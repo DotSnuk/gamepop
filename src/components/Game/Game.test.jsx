@@ -13,6 +13,12 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
+vi.mock('./PurchaseBar/PurchaseBar', () => ({
+  default: () => {
+    return <div></div>;
+  },
+}));
+
 function setupMock() {
   const mockGame = {
     name: 'Grand Theft Auto V',

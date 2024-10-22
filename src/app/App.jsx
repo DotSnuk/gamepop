@@ -4,7 +4,7 @@ import { useContext, createContext, useReducer, useRef } from 'react';
 import CartModal from '../components/CartModal/CartModal';
 import { ACTIONS } from '../assets/constants';
 
-export const DispatchContext = createContext(null);
+export const CartContext = createContext(null);
 
 export default function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);
@@ -15,22 +15,22 @@ export default function App() {
 
   return (
     <>
-      <DispatchContext.Provider value={dispatch}>
+      <CartContext.Provider value={{ dispatch, cart }}>
         <Header openCart={openCart} cart={cart} />
         <main>
           <dialog ref={dialogRef} onCancel={closeCart}>
             <CartModal cart={cart} />
             <button onClick={closeCart}>close</button>
           </dialog>
-          <Outlet context={[dispatch]} />
+          <Outlet context={[cart]} />
         </main>
-      </DispatchContext.Provider>
+      </CartContext.Provider>
     </>
   );
 }
 
-export function useDispatchContext() {
-  return useContext(DispatchContext);
+export function useCartContext() {
+  return useContext(CartContext);
 }
 
 function addGame(game) {

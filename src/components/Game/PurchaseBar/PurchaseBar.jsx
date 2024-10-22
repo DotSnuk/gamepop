@@ -1,10 +1,10 @@
 import styles from './PurchaseBar.module.css';
 import PropTypes from 'prop-types';
-import { useDispatchContext } from '../../../app/App';
+import { useCartContext } from '../../../app/App';
 import { ACTIONS } from '../../../assets/constants';
 
 export default function PurchaseBar({ game }) {
-  const dispatch = useDispatchContext();
+  const { dispatch } = useCartContext();
   return (
     <div className={styles.container}>
       <div className={styles.name}>Buy {game.name}</div>
