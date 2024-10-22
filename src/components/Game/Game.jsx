@@ -28,7 +28,7 @@ export default function Game() {
         <h2>{game.name}</h2>
         <img src={game.background_image} />
         <PurchaseBar game={game} />
-        <p>{parse(game.description)}</p>
+        <div>{parse(game.description)}</div>
       </section>
       <section className={styles.side}>
         <ul>
