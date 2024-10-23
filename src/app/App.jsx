@@ -4,7 +4,7 @@ import { useContext, createContext, useReducer, useRef } from 'react';
 import CartModal from '../components/CartModal/CartModal';
 import { ACTIONS } from '../assets/constants';
 
-export const CartContext = createContext(null);
+export const CartContext = createContext([]);
 
 export default function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);

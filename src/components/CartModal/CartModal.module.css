@@ -1,3 +1,14 @@
+@import '../../assets/colors.css';
+
+.container {
+  width: 75vw;
+  background-color: var(--color-secondary);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
 h1 {
 }
 
