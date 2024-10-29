@@ -1,4 +1,5 @@
-import { useCartContext } from '../../app/App';
+import { useCartContext } from '../CartContextProvider/CartContextProvider';
+import CartItem from '../CartItem/CartItem';
 import styles from './CartModal.module.css';
 
 export default function CartModal() {
@@ -14,13 +15,11 @@ export default function CartModal() {
   return (
     <div className={styles.container}>
       <h1>Your cart</h1>{' '}
-      {cart.map(item => {
-        return (
-          <div className={styles.item} key={item.game.id}>
-            {item.game.name}
-          </div>
-        );
-      })}
+      <div className={styles.cart}>
+        {cart.map(game => {
+          return <CartItem key={game.game.id} game={game} />;
+        })}
+      </div>
     </div>
   );
 }

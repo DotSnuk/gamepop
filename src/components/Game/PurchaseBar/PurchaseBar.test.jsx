@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PurchaseBar from './PurchaseBar';
 import * as App from '../../../app/App';
+import * as CartContextProvider from '../../CartContextProvider/CartContextProvider';
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -11,7 +12,9 @@ afterEach(() => {
 
 function mockContext() {
   const mockFunc = vi.fn();
-  vi.spyOn(App, 'useCartContext').mockReturnValue({ dispatch: mockFunc });
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
+    dispatch: mockFunc,
+  });
   return mockFunc;
 }
 
@@ -33,7 +36,7 @@ it('button shows price', () => {
 
   render(<PurchaseBar game={game} />);
 
-  expect(screen.getByRole('button')).toHaveTextContent(game.price);
+  expect(screen.getByRole('button')).toHaveValue(game.price.toString());
 });
 
 it('clicking button runs function', async () => {
@@ -41,7 +44,9 @@ it('clicking button runs function', async () => {
   const game = getMockedGame();
   const mockFunc = vi.fn();
 
-  vi.spyOn(App, 'useCartContext').mockReturnValue({ dispatch: mockFunc });
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
+    dispatch: mockFunc,
+  });
 
   render(<PurchaseBar game={game} />);
   const button = screen.getByRole('button');

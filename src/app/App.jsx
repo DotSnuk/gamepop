@@ -1,44 +1,27 @@
 import Header from '../components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { useContext, createContext, useReducer, useRef } from 'react';
+import { useRef } from 'react';
+import CartContextProvider from '../components/CartContextProvider/CartContextProvider';
 import CartModal from '../components/CartModal/CartModal';
-import { ACTIONS } from '../assets/constants';
-
-export const CartContext = createContext([]);
 
 export default function App() {
-  const [cart, dispatch] = useReducer(cartReducer, []);
   const dialogRef = useRef(null);
 
-  const openCart = () => dialogRef.current?.showModal();
-  const closeCart = () => dialogRef.current?.close();
+  const openModal = () => dialogRef.current?.showModal();
+  const closeModal = () => dialogRef.current?.close();
 
   return (
     <>
-      <CartContext.Provider value={{ dispatch, cart, openCart }}>
-        <Header />
+      <CartContextProvider>
+        <Header openModal={openModal} />
         <main>
-          <dialog ref={dialogRef} onCancel={closeCart}>
+          <dialog ref={dialogRef} onCancel={closeModal}>
             <CartModal />
-            <button onClick={closeCart}>close</button>
+            <button onClick={closeModal}>close</button>
           </dialog>
           <Outlet />
         </main>
-      </CartContext.Provider>
+      </CartContextProvider>
     </>
   );
-}
-
-export function useCartContext() {
-  return useContext(CartContext);
-}
-
-function addGame(game) {
-  return { game: game, amount: 1 };
-}
-
-function cartReducer(cart, action) {
-  if (action.type === ACTIONS.ADDGAME) {
-    return [...cart, addGame(action.payload)];
-  }
 }

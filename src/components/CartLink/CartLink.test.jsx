@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import * as App from '../../app/App';
 import userEvent from '@testing-library/user-event';
 import CartLink from './CartLink';
+import * as CartContextProvider from '../CartContextProvider/CartContextProvider';
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -11,7 +12,9 @@ afterEach(() => {
 
 it('show 0 with empty cart', () => {
   const mockCart = [];
-  vi.spyOn(App, 'useCartContext').mockReturnValue({ cart: mockCart });
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
+    cart: mockCart,
+  });
 
   render(<CartLink />);
   expect(screen.getByRole('button', { name: 'cart' })).toHaveTextContent('0');
@@ -19,7 +22,9 @@ it('show 0 with empty cart', () => {
 
 it('shows 1 with cart with one item', () => {
   const mockCart = ['item'];
-  vi.spyOn(App, 'useCartContext').mockReturnValue({ cart: mockCart });
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
+    cart: mockCart,
+  });
 
   render(<CartLink />);
   expect(screen.getByRole('button', { name: 'cart' })).toHaveTextContent('1');
@@ -29,12 +34,12 @@ it('callback function called is called', async () => {
   const user = userEvent.setup();
   const mockCart = ['item'];
   const mockFunction = vi.fn();
-  vi.spyOn(App, 'useCartContext').mockReturnValue({
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
     cart: mockCart,
     openCart: mockFunction,
   });
 
-  render(<CartLink />);
+  render(<CartLink openModal={mockFunction} />);
   const button = screen.getByRole('button', { name: 'cart' });
   await user.click(button);
 

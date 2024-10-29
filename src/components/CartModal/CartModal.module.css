@@ -7,11 +7,15 @@
   padding: 0;
   box-sizing: border-box;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
+  text-align: center;
 }
 
-.item {
-  color: blue;
+.cart {
+  display: flex;
+  flex-direction: column;
 }

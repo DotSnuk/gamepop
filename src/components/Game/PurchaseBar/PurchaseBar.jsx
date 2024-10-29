@@ -1,6 +1,6 @@
 import styles from './PurchaseBar.module.css';
 import PropTypes from 'prop-types';
-import { useCartContext } from '../../../app/App';
+import { useCartContext } from '../../CartContextProvider/CartContextProvider';
 import { ACTIONS } from '../../../assets/constants';
 
 export default function PurchaseBar({ game }) {
@@ -8,12 +8,12 @@ export default function PurchaseBar({ game }) {
   return (
     <div className={styles.container}>
       <div className={styles.name}>Buy {game.name}</div>
-      <button
+      <input
+        type='button'
+        value={game.price}
         onClick={() => dispatch({ type: ACTIONS.ADDGAME, payload: game })}
         aria-label='add'
-      >
-        ${game.price}
-      </button>
+      />
     </div>
   );
 }
