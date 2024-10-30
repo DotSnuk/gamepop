@@ -21,26 +21,31 @@ export function useCartContext() {
 
 function cartReducer(cart, action) {
   switch (action.type) {
-    case ACTIONS.ADDGAME:
-      return [...cart, addGame(action.payload)];
+    case ACTIONS.ADDGAME: {
+      if (!cart.some(item => item.game.id === action.payload.game.id))
+        return [...cart, addGame(action.payload)];
+      return cart;
+    }
     case ACTIONS.CHANGEAMOUNT: {
       return cart.map(item => {
-        if (item.game.id === action.payload.game.id)
+        // console.log(action.payload);
+        if (item.game.id === action.payload.game.game.id)
           return changeAmount(action.payload);
         return item;
       });
     }
     case ACTIONS.INCREMENT: {
       return cart.map(item => {
-        if (item.game.id === action.payload.game.id)
+        // console.log(action.payload);
+        if (item.game.id === action.payload.game.game.id)
           return incrementAmount(action.payload);
         return item;
       });
     }
     case ACTIONS.DECREMENT: {
       return cart.map(item => {
-        if (item.game.id === action.payload.game.id)
-          return incrementAmount(action.payload);
+        if (item.game.id === action.payload.game.game.id)
+          return decrementAmount(action.payload);
         return item;
       });
     }
@@ -49,13 +54,26 @@ function cartReducer(cart, action) {
   }
 }
 
-function addGame(game) {
+function addGame(payload) {
+  const { game } = payload;
+
   return { game: game, amount: 1 };
 }
 
-function changeAmount(game) {}
+function changeAmount(payload) {
+  const { game, newAmount } = payload;
+  return { ...game, amount: newAmount };
+}
 
-function incrementAmount(game) {
+function incrementAmount(payload) {
+  const { game } = payload;
   const previousAmount = game.amount;
   return { ...game, amount: previousAmount + 1 };
+}
+
+function decrementAmount(payload) {
+  const { game } = payload;
+  const previousAmount = game.amount;
+  const newAmount = previousAmount - 1 >= 1 ? previousAmount - 1 : 1;
+  return { ...game, amount: newAmount };
 }
