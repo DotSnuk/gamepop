@@ -32,7 +32,6 @@ function cartReducer(cart, action) {
     }
     case ACTIONS.CHANGEAMOUNT: {
       return cart.map(item => {
-        // console.log(action.payload);
         if (item.game.id === action.payload.game.game.id)
           return changeAmount(action.payload);
         return item;
@@ -40,7 +39,6 @@ function cartReducer(cart, action) {
     }
     case ACTIONS.INCREMENT: {
       return cart.map(item => {
-        // console.log(action.payload);
         if (item.game.id === action.payload.game.game.id)
           return incrementAmount(action.payload);
         return item;

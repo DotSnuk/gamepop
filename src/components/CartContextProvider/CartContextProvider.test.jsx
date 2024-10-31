@@ -215,9 +215,6 @@ it('cant add game with same id more than once', async () => {
 });
 
 it('clicking remove game removes it from cart', async () => {
-  // add both games, remove one, check if the right one remains
-  // also check that when both are removed that it shows that the cart
-  // is empty
   const user = userEvent.setup();
   render(
     <CartContextProvider>
