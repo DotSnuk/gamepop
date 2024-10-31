@@ -5,6 +5,7 @@ export const CartContext = createContext(null);
 
 export default function CartContextProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, []);
+  console.log(cart);
 
   return (
     <CartContext.Provider value={{ dispatch, cart }}>
@@ -25,6 +26,9 @@ function cartReducer(cart, action) {
       if (!cart.some(item => item.game.id === action.payload.game.id))
         return [...cart, addGame(action.payload)];
       return cart;
+    }
+    case ACTIONS.REMOVEGAME: {
+      return cart.filter(item => item.game.id !== action.payload.game.game.id);
     }
     case ACTIONS.CHANGEAMOUNT: {
       return cart.map(item => {

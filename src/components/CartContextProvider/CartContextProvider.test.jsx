@@ -78,6 +78,7 @@ function CustomTestComponent() {
                     />
                     <input
                       type='button'
+                      aria-label={`remove ${item.game.name}`}
                       value={'remove'}
                       onClick={() =>
                         dispatch({
@@ -211,4 +212,38 @@ it('cant add game with same id more than once', async () => {
   const headings = screen.getAllByRole('heading', { level: 2 });
   const gtaHead = headings.filter(head => head.textContent.match(/gta/i));
   expect(gtaHead.length).toBe(1);
+});
+
+it('clicking remove game removes it from cart', async () => {
+  // add both games, remove one, check if the right one remains
+  // also check that when both are removed that it shows that the cart
+  // is empty
+  const user = userEvent.setup();
+  render(
+    <CartContextProvider>
+      <CustomTestComponent />
+    </CartContextProvider>,
+  );
+
+  const gtaButton = screen.getByDisplayValue(/buy gta/i);
+  const factorioButton = screen.getByDisplayValue(/buy factorio/i);
+  await user.click(gtaButton);
+  await user.click(factorioButton);
+
+  let games = screen.getAllByRole('heading', { level: 2 });
+  expect(games.length).toBe(2);
+
+  const removeGtaButton = screen.getByRole('button', { name: 'remove gta' });
+  await user.click(removeGtaButton);
+
+  games = screen.getAllByRole('heading', { level: 2 });
+  expect(games.length).toBe(1);
+  expect(games.some(heading => heading.textContent.match(/gta/i))).toBeFalsy();
+
+  const removeFactorioButton = screen.getByRole('button', {
+    name: 'remove factorio',
+  });
+  await user.click(removeFactorioButton);
+
+  expect(screen.getByText(/cart is empty/i)).toBeInTheDocument();
 });
