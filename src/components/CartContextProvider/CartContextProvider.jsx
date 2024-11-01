@@ -69,13 +69,13 @@ function changeAmount(payload) {
 
 function incrementAmount(payload) {
   const { game } = payload;
-  const previousAmount = game.amount;
+  const previousAmount = parseInt(game.amount);
   return { ...game, amount: previousAmount + 1 };
 }
 
 function decrementAmount(payload) {
   const { game } = payload;
-  const previousAmount = game.amount;
+  const previousAmount = parseInt(game.amount);
   const newAmount = previousAmount - 1 >= 1 ? previousAmount - 1 : 1;
   return { ...game, amount: newAmount };
 }

@@ -14,19 +14,28 @@ export default function CartItem({ game }) {
           type='button'
           aria-label='decrement'
           value='-'
-          onClick={() => dispatch({ type: ACTIONS.DECREMENT, payload: game })}
+          onClick={() =>
+            dispatch({ type: ACTIONS.DECREMENT, payload: { game: game } })
+          }
         />
         <input
-          type='text'
+          type='number'
           aria-label='amount'
           value={game.amount}
-          onChange={() => {}}
+          onChange={e =>
+            dispatch({
+              type: ACTIONS.CHANGEAMOUNT,
+              payload: { game: game, newAmount: e.target.value },
+            })
+          }
         />
         <input
           type='button'
           aria-label='increment'
           value='+'
-          onClick={() => dispatch({ type: ACTIONS.INCREMENT, payload: game })}
+          onClick={() =>
+            dispatch({ type: ACTIONS.INCREMENT, payload: { game: game } })
+          }
         />
       </div>
 

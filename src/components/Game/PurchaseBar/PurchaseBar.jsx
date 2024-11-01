@@ -11,7 +11,9 @@ export default function PurchaseBar({ game }) {
       <input
         type='button'
         value={game.price}
-        onClick={() => dispatch({ type: ACTIONS.ADDGAME, payload: game })}
+        onClick={() =>
+          dispatch({ type: ACTIONS.ADDGAME, payload: { game: game } })
+        }
         aria-label='add'
       />
     </div>
