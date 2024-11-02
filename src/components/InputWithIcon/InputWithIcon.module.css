@@ -1,0 +1,38 @@
+@import '../../assets/colors.css';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.icon {
+  /* height: 2rem;
+  width: 2rem;
+  position: absolute;
+  box-sizing: border-box; */
+  height: 2rem;
+  width: 2rem;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 50%;
+  pointer-events: none;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 4px;
+}
+
+input {
+  height: 2rem;
+
+  width: 4rem;
+  box-sizing: border-box;
+  top: 50%;
+  background: none;
+  border: 2px solid var(--color-border);
+
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border-radius: 5px;
+  outline: none;
+}

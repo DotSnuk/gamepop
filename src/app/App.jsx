@@ -14,7 +14,7 @@ export default function App() {
     <>
       <CartContextProvider>
         <Header openModal={openModal} />
-        <main>
+        <main onClick={closeModal}>
           <dialog ref={dialogRef} onCancel={closeModal}>
             <CartModal />
             <button onClick={closeModal}>close</button>

@@ -11,9 +11,8 @@ export default function CartModal() {
       </div>
     );
 
-  console.log(cart);
   return (
-    <div className={styles.container}>
+    <div onClick={e => e.stopPropagation()} className={styles.container}>
       <h1>Your cart</h1>{' '}
       <div className={styles.cart}>
         {cart.map(game => {
