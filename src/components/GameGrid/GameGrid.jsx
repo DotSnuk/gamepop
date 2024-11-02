@@ -8,7 +8,7 @@ export default function GameGrid({ games }) {
     <div className={styles.container}>
       {games.map(game => (
         <div className={styles.gameWrapper} key={game.id}>
-          <Link to={`game/${game.id}`} state={{ test: 123 }}>
+          <Link to={`game/${game.id}`}>
             <GridItem game={game} />
           </Link>
         </div>

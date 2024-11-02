@@ -16,7 +16,9 @@ export default function CartModal({ closeModal }) {
       <h1>Your cart</h1>{' '}
       <div className={styles.cart}>
         {cart.map(game => {
-          return <CartItem key={game.game.id} game={game} />;
+          return (
+            <CartItem key={game.game.id} game={game} closeModal={closeModal} />
+          );
         })}
       </div>
       <input type='button' onClick={() => closeModal()} value={'Close'} />

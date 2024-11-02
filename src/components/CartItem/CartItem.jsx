@@ -1,13 +1,16 @@
 import styles from './CartItem.module.css';
 import { ACTIONS } from '../../assets/constants';
 import { useCartContext } from '../CartContextProvider/CartContextProvider';
+import { Link } from 'react-router-dom';
 
-export default function CartItem({ game }) {
+export default function CartItem({ game, closeModal }) {
   const { dispatch } = useCartContext();
   return (
     <div className={styles.container}>
       <div aria-label='name' className={styles.name}>
-        {game.game.name}
+        <Link to={`game/${game.game.id}`} onClick={() => closeModal()}>
+          {game.game.name}
+        </Link>
       </div>
       <div className={styles.input}>
         <input

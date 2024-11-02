@@ -21,15 +21,3 @@ it('game shows name and price', () => {
   expect(screen.getByText(/gta/i)).toBeInTheDocument();
   expect(screen.getByLabelText('price')).toHaveTextContent(75);
 });
-
-// it('clicking plus changes amount', async () => {
-//   const user = userEvent.setup();
-//   const mockGame = { game: { id: 1, name: 'gta', price: 75 }, amount: 1 };
-
-//   renderWithProvider(<CartItem game={mockGame} />);
-//   const button = screen.getByRole('button', { name: /increment/i });
-//   await user.click(button);
-
-//   const amountInput = await screen.findByRole('textbox', { name: /amount/i });
-//   expect(amountInput).toHaveValue(2);
-// });
