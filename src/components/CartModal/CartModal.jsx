@@ -2,7 +2,7 @@ import { useCartContext } from '../CartContextProvider/CartContextProvider';
 import CartItem from '../CartItem/CartItem';
 import styles from './CartModal.module.css';
 
-export default function CartModal() {
+export default function CartModal({ closeModal }) {
   const { cart } = useCartContext();
   if (cart.length === 0)
     return (
@@ -19,6 +19,7 @@ export default function CartModal() {
           return <CartItem key={game.game.id} game={game} />;
         })}
       </div>
+      <input type='button' onClick={() => closeModal()} value={'Close'} />
     </div>
   );
 }

@@ -16,8 +16,7 @@ export default function App() {
         <Header openModal={openModal} />
         <main onClick={closeModal}>
           <dialog ref={dialogRef} onCancel={closeModal}>
-            <CartModal />
-            <button onClick={closeModal}>close</button>
+            <CartModal closeModal={closeModal} />
           </dialog>
           <Outlet />
         </main>
