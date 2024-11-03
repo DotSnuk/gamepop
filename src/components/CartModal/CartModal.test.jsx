@@ -20,3 +20,13 @@ it('empty cart says cart is empty', () => {
     /your cart is empty/i,
   );
 });
+
+it('show total price', () => {
+  const mockCart = [
+    { game: { name: 'gta', id: 1, price: 75 }, amount: 1 },
+    { game: { name: 'factorio', id: 2, price: 30 }, amount: 2 },
+  ];
+  vi.spyOn(CartContextProvider, 'useCartContext').mockReturnValue({
+    cart: mockCart,
+  });
+});

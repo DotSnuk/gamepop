@@ -5,13 +5,16 @@ import InputWithIcon from '../InputWithIcon/InputWithIcon';
 
 export default function CartLink({ openModal }) {
   const { cart } = useCartContext();
+  const colors = getComputedStyle(document.documentElement);
+  const borderColor = colors.getPropertyValue('--color-border').trim();
   // cart.length needs to later also apply the amount of games per game
   return (
     <nav>
       <InputWithIcon
-        iconComponent={<ShoppingCart />}
+        iconComponent={<ShoppingCart color={borderColor} />}
         clickFunction={openModal}
         value={cart.length}
+        aria-label='cart'
       />
     </nav>
   );

@@ -17,7 +17,7 @@ it('show 0 with empty cart', () => {
   });
 
   render(<CartLink />);
-  expect(screen.getByRole('button', { name: 'cart' })).toHaveTextContent('0');
+  expect(screen.getByRole('button', { name: 'cart' })).toHaveValue('0');
 });
 
 it('shows 1 with cart with one item', () => {
@@ -27,10 +27,10 @@ it('shows 1 with cart with one item', () => {
   });
 
   render(<CartLink />);
-  expect(screen.getByRole('button', { name: 'cart' })).toHaveTextContent('1');
+  expect(screen.getByRole('button', { name: 'cart' })).toHaveValue('1');
 });
 
-it('callback function called is called', async () => {
+it('callback functionis called', async () => {
   const user = userEvent.setup();
   const mockCart = ['item'];
   const mockFunction = vi.fn();

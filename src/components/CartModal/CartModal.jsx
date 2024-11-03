@@ -10,6 +10,7 @@ export default function CartModal({ closeModal }) {
         <h1>Your cart is empty</h1>
       </div>
     );
+  console.log(cart);
 
   return (
     <div onClick={e => e.stopPropagation()} className={styles.container}>

@@ -19,3 +19,18 @@ body {
 dialog {
   padding: 0;
 }
+
+input {
+  border: 2px solid var(--color-border);
+  height: 2rem;
+
+  width: 3rem;
+  box-sizing: border-box;
+  top: 50%;
+  background: none;
+
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border-radius: 5px;
+  outline: none;
+}

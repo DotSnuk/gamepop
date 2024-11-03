@@ -22,15 +22,14 @@
   padding: 4px;
 }
 
-input {
+.input {
   height: 2rem;
 
   width: 4rem;
   box-sizing: border-box;
   top: 50%;
   background: none;
-  border: 2px solid var(--color-border);
-
+  border: none;
   background-color: var(--color-secondary);
   color: var(--color-text);
   border-radius: 5px;

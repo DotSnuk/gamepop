@@ -2,9 +2,13 @@ import styles from './CartItem.module.css';
 import { ACTIONS } from '../../assets/constants';
 import { useCartContext } from '../CartContextProvider/CartContextProvider';
 import { Link } from 'react-router-dom';
+import { SquareX } from 'lucide-react';
+import InputWithIcon from '../InputWithIcon/InputWithIcon';
 
 export default function CartItem({ game, closeModal }) {
   const { dispatch } = useCartContext();
+  const colors = getComputedStyle(document.documentElement);
+  const borderColor = colors.getPropertyValue('--color-border').trim();
   return (
     <div className={styles.container}>
       <div aria-label='name' className={styles.name}>
@@ -45,6 +49,12 @@ export default function CartItem({ game, closeModal }) {
       <div aria-label='price' className={styles.price}>
         {game.amount * game.game.price}
       </div>
+      <InputWithIcon
+        iconComponent={<SquareX color={borderColor} />}
+        clickFunction={() =>
+          dispatch({ type: ACTIONS.REMOVEGAME, payload: { game: game } })
+        }
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CartContextProvider from '../CartContextProvider/CartContextProvider';
 import CartItem from './CartItem';
+import { MemoryRouter } from 'react-router-dom';
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -10,7 +11,11 @@ afterEach(() => {
 });
 
 function renderWithProvider(game) {
-  return render(<CartContextProvider>{game}</CartContextProvider>);
+  return render(
+    <MemoryRouter>
+      <CartContextProvider>{game}</CartContextProvider>
+    </MemoryRouter>,
+  );
 }
 
 it('game shows name and price', () => {

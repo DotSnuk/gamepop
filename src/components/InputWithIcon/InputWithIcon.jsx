@@ -5,10 +5,14 @@ export default function InputWithIcon({
   clickFunction,
   ...rest
 }) {
-  console.log(rest);
   return (
     <div className={styles.wrapper}>
-      <input type='button' onClick={() => clickFunction()} {...rest} />
+      <input
+        className={styles.input}
+        type='button'
+        onClick={() => clickFunction()}
+        {...rest}
+      />
       <div className={styles.icon}>{iconComponent}</div>
     </div>
   );
