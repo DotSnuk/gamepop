@@ -1,16 +1,23 @@
 .container {
   display: grid;
   grid-template-columns: 7fr 2fr 1fr 1fr;
+  align-items: center;
+  padding: 2px;
+  &:nth-child(even) {
+    background-color: var(--color-primary);
+  }
 }
 
 .input {
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
+  background-color: inherit;
 }
 
 .input [type='button'] {
   flex: 0 0 30px;
+  background-color: inherit;
 }
 
 .input [type='text'] {
@@ -19,10 +26,14 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
+  background-color: inherit;
+  text-align: center;
   -webkit-appearance: none;
   margin: 0;
 }
 
 input[type='number'] {
   -moz-appearance: textfield;
+  text-align: center;
+  background-color: inherit;
 }

@@ -47,7 +47,7 @@ export default function CartItem({ game, closeModal }) {
       </div>
 
       <div aria-label='price' className={styles.price}>
-        {game.amount * game.game.price}
+        {game.amount * game.game.price}$
       </div>
       <InputWithIcon
         iconComponent={<SquareX color={borderColor} />}

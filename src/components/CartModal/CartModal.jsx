@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useCartContext } from '../CartContextProvider/CartContextProvider';
 import CartItem from '../CartItem/CartItem';
 import styles from './CartModal.module.css';
@@ -10,7 +11,12 @@ export default function CartModal({ closeModal }) {
         <h1>Your cart is empty</h1>
       </div>
     );
-  console.log(cart);
+
+  const total = cart.reduce(
+    (accumulator, current) =>
+      calculateTotal(accumulator, current.amount * current.game.price),
+    0,
+  );
 
   return (
     <div onClick={e => e.stopPropagation()} className={styles.container}>
@@ -22,7 +28,14 @@ export default function CartModal({ closeModal }) {
           );
         })}
       </div>
+      <div className={styles.totalWrapper}>
+        <div className={styles.total}>total: {total}$</div>
+      </div>
       <input type='button' onClick={() => closeModal()} value={'Close'} />
     </div>
   );
+}
+
+function calculateTotal(accumulator, current) {
+  return accumulator + current;
 }
