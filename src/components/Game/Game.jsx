@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getGameWithId } from '../../api/api';
 import { addPrices } from '../../utils/addPrices';
 import PurchaseBar from './PurchaseBar/PurchaseBar';
+import Carousel from './Carousel/Carousel';
+import Description from './Description/Description';
 import styles from './Game.module.css';
 import parse from 'html-react-parser';
 
@@ -22,13 +24,16 @@ export default function Game() {
         <h2>loading...</h2>
       </div>
     );
+
+  console.log(game);
   return (
     <div className={styles.container}>
       <section className={styles.content}>
         <h2>{game.name}</h2>
-        <img src={game.background_image} />
+        {/* <img src={game.background_image} /> */}
+        <Carousel />
         <PurchaseBar game={game} />
-        <div>{parse(game.description)}</div>
+        <Description text={game.description} />
       </section>
       <section className={styles.side}>
         <ul>

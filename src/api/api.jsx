@@ -45,4 +45,17 @@ export async function getGameWithId(id) {
   return game;
 }
 
+export async function getScreenshots(id) {
+  const screenshots = await fetch(
+    `${URL}games/${id}/screenshots?key=${API_KEY}`,
+    {
+      mode: 'cors',
+    },
+  ).then(response => {
+    if (!response.ok) throw new Error('server error');
+    return response.json();
+  });
+  return screenshots.results.map(data => data.image);
+}
+
 // function to get searchString?
