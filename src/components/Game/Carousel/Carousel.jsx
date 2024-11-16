@@ -57,7 +57,6 @@ function ImageMain({ image, loaded }) {
         <LoaderCircle style={{ display: loaded ? 'none' : 'block' }} />
       </>
     );
-
     return <div>{img}</div>;
   }
   return <LoaderCircle style={{ display: loaded ? 'none' : 'block' }} />;
