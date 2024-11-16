@@ -20,8 +20,11 @@ it('wrong id gets error', async () => {
 
 it('get array of screenshots', async () => {
   const screenshots = await getScreenshots('grand-theft-auto-v');
+  console.log(screenshots);
   expect(Array.isArray(screenshots)).toBeTruthy();
-  const regTest = /jpeg$|jpg$|png$|/;
+  const regTest = /jpeg$|jpg$|png$/;
   // could use string method endsWith but wanted to learn regex
-  expect(screenshots.some(screenshot => regTest.test(screenshot))).toBeTruthy();
+  const imgs = screenshots.map(shot => shot.image);
+
+  expect(imgs.some(screenshot => regTest.test(screenshot))).toBeTruthy();
 });

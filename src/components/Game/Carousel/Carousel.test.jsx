@@ -5,7 +5,10 @@ import * as api from '../../../api/api';
 import Carousel from './Carousel';
 
 it('image is rendered', async () => {
-  const urls = ['www.jpg.jpg', 'www.jpg2.jpg'];
+  const urls = [
+    { id: 1, image: 'www.jpg.jpg' },
+    { id: 2, image: 'www.jpg2.jpg' },
+  ];
   vi.spyOn(api, 'getScreenshots').mockResolvedValue(urls);
 
   await act(async () => {

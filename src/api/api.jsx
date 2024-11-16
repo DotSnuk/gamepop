@@ -55,7 +55,7 @@ export async function getScreenshots(id) {
     if (!response.ok) throw new Error('server error');
     return response.json();
   });
-  return screenshots.results.map(data => data.image);
+  return screenshots.results;
 }
 
 // function to get searchString?
