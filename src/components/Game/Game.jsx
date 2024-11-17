@@ -31,7 +31,7 @@ export default function Game() {
       <section className={styles.content}>
         <h2>{game.name}</h2>
         {/* <img src={game.background_image} /> */}
-        <Carousel />
+        <Carousel className={styles.carousel} />
         <PurchaseBar game={game} />
         <Description text={game.description} />
       </section>
