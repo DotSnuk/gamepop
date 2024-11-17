@@ -57,22 +57,21 @@ function ImageMain({ image, loaded }) {
         <LoaderCircleWithClass loaded={loaded} />
       </>
     );
-    return <div>{img}</div>;
+    return <>{img}</>;
   }
   return <LoaderCircleWithClass loaded={loaded} />;
 }
 
 function ImageRow({ images, increaseImagesLoaded, loaded }) {
   const imgs = images.map(img => (
-    <>
+    <div key={img.id} className={styles.rowItem}>
       <img
-        key={img.id}
         src={img.image}
         onLoad={() => increaseImagesLoaded()}
         style={{ display: loaded ? 'block' : 'none' }}
       />
       <LoaderCircleWithClass loaded={loaded} />
-    </>
+    </div>
   ));
 
   return <div className={styles.row}>{imgs}</div>;

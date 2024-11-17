@@ -1,11 +1,16 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 960px;
 }
 
 .row {
   display: flex;
   flex-direction: row;
+}
+
+.rowItem {
+  flex-basis: 240px;
 }
 
 .spinning {
@@ -19,4 +24,8 @@
   to {
     transform: rotate(359deg);
   }
+}
+
+img {
+  width: 100%;
 }
