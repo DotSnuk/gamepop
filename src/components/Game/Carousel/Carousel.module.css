@@ -7,3 +7,16 @@
   display: flex;
   flex-direction: row;
 }
+
+.spinning {
+  animation: 2s spin infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

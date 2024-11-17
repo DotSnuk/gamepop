@@ -54,12 +54,12 @@ function ImageMain({ image, loaded }) {
           alt='main'
           style={{ display: loaded ? 'block' : 'none' }}
         />
-        <LoaderCircle style={{ display: loaded ? 'none' : 'block' }} />
+        <LoaderCircleWithClass loaded={loaded} />
       </>
     );
     return <div>{img}</div>;
   }
-  return <LoaderCircle style={{ display: loaded ? 'none' : 'block' }} />;
+  return <LoaderCircleWithClass loaded={loaded} />;
 }
 
 function ImageRow({ images, increaseImagesLoaded, loaded }) {
@@ -71,9 +71,18 @@ function ImageRow({ images, increaseImagesLoaded, loaded }) {
         onLoad={() => increaseImagesLoaded()}
         style={{ display: loaded ? 'block' : 'none' }}
       />
-      <LoaderCircle style={{ display: loaded ? 'none' : 'block' }} />
+      <LoaderCircleWithClass loaded={loaded} />
     </>
   ));
 
   return <div className={styles.row}>{imgs}</div>;
+}
+
+function LoaderCircleWithClass({ loaded }) {
+  return (
+    <LoaderCircle
+      style={{ display: loaded ? 'none' : 'block' }}
+      className={styles.spinning}
+    />
+  );
 }
