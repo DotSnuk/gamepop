@@ -60,7 +60,11 @@ function ImageMain({ image, loaded }) {
     );
     return <div className={styles.main}>{img}</div>;
   }
-  return <LoaderCircleWithClass loaded={loaded} />;
+  return (
+    <div className={styles.main}>
+      <LoaderCircleWithClass loaded={loaded} />
+    </div>
+  );
 }
 
 function ImageRow({ images, increaseImagesLoaded, loaded, setCurrentId }) {
