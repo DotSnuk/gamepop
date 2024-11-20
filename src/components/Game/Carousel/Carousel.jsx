@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import { getScreenshots } from '../../../api/api';
+import { getScreenshots, getGameWithId } from '../../../api/api';
 import { LoaderCircle } from 'lucide-react';
 import styles from './Carousel.module.css';
 import placeholder from '../../../assets/placeholder_1920x1080.png';
@@ -13,11 +13,36 @@ export default function Carousel() {
   const imagesLoaded = useRef(0);
 
   useEffect(() => {
-    async function handleGetScreenshots(id) {
-      await getScreenshots(id).then(imgs => (images.current = imgs));
+    async function fetchImages(id) {
+      const tempImage = [];
+      const background = await getGameWithId(id).then(obj => {
+        return { id: 'background', image: obj.background_image };
+      });
+      if (background?.image) {
+        tempImage.push(background);
+      }
+
+      const screenshots = await getScreenshots(id).then(objects => objects);
+      tempImage.push(...screenshots);
+      images.current = tempImage;
       setCurrentId(images.current[0].id);
     }
-    handleGetScreenshots(id);
+    async function handleGetBackground(id) {
+      await getGameWithId(id).then(obj => {
+        console.log(obj);
+        const backgroundImg = { image: obj.background_image, id: 'background' };
+        images.current = [...images.current, backgroundImg];
+      });
+    }
+    async function handleGetScreenshots(id) {
+      await getScreenshots(id).then(
+        imgs => (images.current = [...images.current, ...imgs]),
+      );
+      setCurrentId(images.current[0].id);
+    }
+    // handleGetBackground(id);
+    // handleGetScreenshots(id);
+    fetchImages(id);
   }, [id]);
 
   const increaseImagesLoaded = () => {
@@ -32,6 +57,8 @@ export default function Carousel() {
   const getCurrentImage = () => {
     return images.current.filter(imgs => imgs.id === currentId);
   };
+
+  console.log(images.current);
 
   return (
     <div className={styles.container}>

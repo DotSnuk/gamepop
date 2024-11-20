@@ -25,13 +25,12 @@ export default function Game() {
       </div>
     );
 
-  console.log(game);
   return (
     <div className={styles.container}>
       <section className={styles.content}>
         <h2>{game.name}</h2>
         {/* <img src={game.background_image} /> */}
-        <Carousel className={styles.carousel} />
+        <Carousel />
         <PurchaseBar game={game} />
         <Description text={game.description} />
       </section>

@@ -11,13 +11,16 @@ afterEach(() => {
 });
 
 function setup() {
-  const urls = [
+  const screenshots = [
     { id: 1, image: 'www.jpg.jpg' },
     { id: 2, image: 'www.jpg2.jpg' },
   ];
-  vi.spyOn(api, 'getScreenshots').mockResolvedValue(urls);
+  const gameObject = { background_image: 'www.jpg3.jpg' };
+  vi.spyOn(api, 'getScreenshots').mockResolvedValue(screenshots);
+  vi.spyOn(api, 'getGameWithId').mockResolvedValue(gameObject);
 
-  return urls;
+  const allImages = [gameObject, ...screenshots];
+  return allImages;
 }
 
 async function renderWithRouter() {
