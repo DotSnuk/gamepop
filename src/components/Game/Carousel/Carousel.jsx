@@ -22,26 +22,11 @@ export default function Carousel() {
         tempImage.push(background);
       }
 
-      const screenshots = await getScreenshots(id).then(objects => objects);
-      tempImage.push(...screenshots);
+      const screenshots = await getScreenshots(id);
+      if (screenshots.length > 0) tempImage.push(...screenshots);
       images.current = tempImage;
       setCurrentId(images.current[0].id);
     }
-    async function handleGetBackground(id) {
-      await getGameWithId(id).then(obj => {
-        console.log(obj);
-        const backgroundImg = { image: obj.background_image, id: 'background' };
-        images.current = [...images.current, backgroundImg];
-      });
-    }
-    async function handleGetScreenshots(id) {
-      await getScreenshots(id).then(
-        imgs => (images.current = [...images.current, ...imgs]),
-      );
-      setCurrentId(images.current[0].id);
-    }
-    // handleGetBackground(id);
-    // handleGetScreenshots(id);
     fetchImages(id);
   }, [id]);
 

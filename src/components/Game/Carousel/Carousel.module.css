@@ -32,6 +32,9 @@
   background-color: rgba(0, 0, 0, 0.3);
   flex-basis: 240px;
   flex-shrink: 0;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .rowItem:first-of-type {
