@@ -39,6 +39,7 @@ export default function Carousel() {
       <ImageRow
         images={images.current}
         increaseImagesLoaded={increaseImagesLoaded}
+        setCurrentId={setCurrentId}
         loaded={loaded}
       />
     </div>
@@ -57,17 +58,19 @@ function ImageMain({ image, loaded }) {
         <LoaderCircleWithClass loaded={loaded} />
       </>
     );
-    return <>{img}</>;
+    return <div className={styles.main}>{img}</div>;
   }
   return <LoaderCircleWithClass loaded={loaded} />;
 }
 
-function ImageRow({ images, increaseImagesLoaded, loaded }) {
+function ImageRow({ images, increaseImagesLoaded, loaded, setCurrentId }) {
   const imgs = images.map(img => (
     <div key={img.id} className={styles.rowItem}>
       <img
         src={img.image}
+        alt='row'
         onLoad={() => increaseImagesLoaded()}
+        onClick={() => setCurrentId(img.id)}
         style={{ display: loaded ? 'block' : 'none' }}
       />
       <LoaderCircleWithClass loaded={loaded} />
@@ -81,7 +84,19 @@ function LoaderCircleWithClass({ loaded }) {
   return (
     <LoaderCircle
       style={{ display: loaded ? 'none' : 'block' }}
+      role='img'
+      alt='loading'
       className={styles.spinning}
     />
   );
 }
+
+// function getImageRowGridStyle(screenshotAmount) {
+//   const style = {
+//     display: 'grid',
+//     gridTemplateColumns: `repeat(${screenshotAmount}, 240px)`,
+//     overflowY: 'hidden',
+//     overflowX: 'auto',
+//   };
+//   return style;
+// }
