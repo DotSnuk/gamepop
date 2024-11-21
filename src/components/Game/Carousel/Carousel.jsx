@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { getScreenshots, getGameWithId } from '../../../api/api';
 import { LoaderCircle } from 'lucide-react';
 import styles from './Carousel.module.css';
@@ -9,6 +9,7 @@ export default function Carousel() {
   const { id } = useParams();
   const [currentId, setCurrentId] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const timerReset = useInterval(getNextImage, 10000);
   const images = useRef([]);
   const imagesLoaded = useRef(0);
 
@@ -30,20 +31,34 @@ export default function Carousel() {
     fetchImages(id);
   }, [id]);
 
-  const increaseImagesLoaded = () => {
+  function getNextImage() {
+    const index = images.current.findIndex(img => img.id === currentId);
+    if (index !== -1) {
+      if (index + 1 < images.current.length) {
+        setCurrentId(images.current[index + 1].id);
+        return;
+      }
+      setCurrentId(images.current[0].id);
+    }
+  }
+
+  function increaseImagesLoaded() {
     imagesLoaded.current = imagesLoaded.current + 1;
     areAllImagesLoaded();
-  };
+  }
 
-  const areAllImagesLoaded = () => {
+  function areAllImagesLoaded() {
     imagesLoaded.current === images.current.length && setLoaded(true);
-  };
+  }
 
-  const getCurrentImage = () => {
+  function getCurrentImage() {
     return images.current.filter(imgs => imgs.id === currentId);
-  };
+  }
 
-  console.log(images.current);
+  function handleClick(id) {
+    setCurrentId(id);
+    timerReset();
+  }
 
   return (
     <div className={styles.container}>
@@ -51,11 +66,34 @@ export default function Carousel() {
       <ImageRow
         images={images.current}
         increaseImagesLoaded={increaseImagesLoaded}
+        handleClick={handleClick}
         setCurrentId={setCurrentId}
         loaded={loaded}
       />
     </div>
   );
+}
+
+function useInterval(callback, delay) {
+  const timerRef = useRef(null);
+  const callbackRef = useRef(callback);
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => callbackRef.current(), delay);
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, [delay]);
+
+  const reset = useCallback(() => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => callbackRef.current(), delay);
+  }, [delay]);
+
+  return reset;
 }
 
 function ImageMain({ image, loaded }) {
@@ -79,14 +117,14 @@ function ImageMain({ image, loaded }) {
   );
 }
 
-function ImageRow({ images, increaseImagesLoaded, loaded, setCurrentId }) {
+function ImageRow({ images, increaseImagesLoaded, loaded, handleClick }) {
   const imgs = images.map(img => (
     <div key={img.id} className={styles.rowItem}>
       <img
         src={img.image}
         alt='row'
         onLoad={() => increaseImagesLoaded()}
-        onClick={() => setCurrentId(img.id)}
+        onClick={() => handleClick(img.id)}
         style={{ display: loaded ? 'block' : 'none' }}
       />
       <LoaderCircleWithClass loaded={loaded} />
