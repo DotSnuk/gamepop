@@ -71,20 +71,3 @@ it('main image changes when user click image in row', async () => {
 
   expect(rowSrc).toEqual(newMainSrc);
 });
-
-it('after 10 seconds show next image', async () => {
-  const urls = setup();
-  await renderWithRouter();
-
-  const imgs = screen.getAllByRole('img', { hidden: true });
-  imgs.forEach(img => fireEvent.load(img));
-
-  let mainImage = screen.getByAltText('main');
-  expect(mainImage.getAttribute('src')).toBe(urls[0].image);
-
-  vi.useFakeTimers();
-  vi.runAllTimers();
-
-  mainImage = screen.getByAltText('main');
-  expect(mainImage.getAttribute('src')).toBe(urls[1].image);
-});

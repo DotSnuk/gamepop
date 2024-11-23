@@ -12,6 +12,7 @@ export async function getGames() {
   return games.results;
 }
 
+// adult tags ids: 312, 786, 1081, 785
 export async function getPopularGames() {
   const today = new Date();
   const oneYearAgo = new Date(
@@ -22,6 +23,7 @@ export async function getPopularGames() {
   const searchDate = `dates=${oneYearAgoFormatted},${todayFormatted}`;
   const searchRating = `ordering=-rating`;
   const searchSize = `page_size=12`;
+  const exludeTags = `tags=312,786,1081,785`;
   const games = await fetch(
     `${URL}games?key=${API_KEY}&${searchDate}&${searchRating}&${searchSize}`,
     {
