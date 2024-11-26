@@ -14,26 +14,33 @@ export async function getGames() {
 
 // adult tags ids: 312, 786, 1081, 785
 export async function getPopularGames() {
-  const today = new Date();
-  const oneYearAgo = new Date(
-    new Date().setFullYear(new Date().getFullYear() - 1),
-  );
-  const todayFormatted = formatDate(today);
-  const oneYearAgoFormatted = formatDate(oneYearAgo);
-  const searchDate = `dates=${oneYearAgoFormatted},${todayFormatted}`;
-  const searchRating = `ordering=-rating`;
-  const searchSize = `page_size=12`;
-  const exludeTags = `tags=312,786,1081,785`;
-  const games = await fetch(
-    `${URL}games?key=${API_KEY}&${searchDate}&${searchRating}&${searchSize}`,
-    {
-      mode: 'cors',
-    },
-  ).then(response => {
-    if (!response.ok) throw new Error('server error');
-    return response.json();
-  });
-  return games.results;
+  const gamesArray = [];
+  let page = 0;
+  while (gamesArray.length < 12) {
+    page += 1;
+    const today = new Date();
+    const oneYearAgo = new Date(
+      new Date().setFullYear(new Date().getFullYear() - 1),
+    );
+    const todayFormatted = formatDate(today);
+    const oneYearAgoFormatted = formatDate(oneYearAgo);
+    const searchDate = `dates=${oneYearAgoFormatted},${todayFormatted}`;
+    const searchRating = `ordering=-rating`;
+    const searchSize = `page_size=12`;
+    const exludeTags = `tags=312,786,1081,785`;
+    const games = await fetch(
+      `${URL}games?key=${API_KEY}&page=${page}&${searchDate}&${searchRating}&${searchSize}`,
+      {
+        mode: 'cors',
+      },
+    ).then(response => {
+      if (!response.ok) throw new Error('server error');
+      return response.json();
+    });
+    gamesArray.push(...filterGames(games.results));
+    // return games.results;
+  }
+  return gamesArray.slice(0, 12);
 }
 
 export async function getGameWithId(id) {
@@ -58,6 +65,20 @@ export async function getScreenshots(id) {
     return response.json();
   });
   return screenshots.results;
+}
+
+function filterGames(games) {
+  const filteredGames = games.reduce((results, game) => {
+    const tags = game.tags.map(tag => tag.id);
+    if (tags.every(doesNotHaveTags)) results.push(game);
+    return results;
+  }, []);
+  return filteredGames;
+}
+
+function doesNotHaveTags(tagId) {
+  const adultTagIds = [312, 786, 1081, 785];
+  return !adultTagIds.includes(tagId);
 }
 
 // function to get searchString?
