@@ -5,7 +5,6 @@ import GridInfo from '../GridInfo/GridInfo';
 export default function GridItem({ game }) {
   return (
     <div className={styles.container}>
-      <h2 className={styles.name}>{game.name}</h2>
       <img className={styles.background} src={game.background_image} />
       <GridInfo className={styles.info} game={game} />
     </div>
